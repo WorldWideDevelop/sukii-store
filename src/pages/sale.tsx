@@ -9,7 +9,7 @@ export default function Home({ products }: iProps) {
   console.log({ products })
   return (
     <div>
-      <h1>HOME</h1>
+      <h1>SALE</h1>
     </div>
   )
 }

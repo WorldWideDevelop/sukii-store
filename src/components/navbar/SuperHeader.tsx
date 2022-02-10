@@ -4,9 +4,9 @@ import { SearchIcon, ShoppingBagIcon } from '@heroicons/react/outline'
 
 export default function SuperHeader() {
   return (
-    <section className="text-whity-secondary hidden bg-gray-900 px-4 lg:block lg:px-8 lg:py-3">
+    <section className="text-whity-secondary hidden bg-gray-900 px-4 lg:block lg:px-8 lg:py-2">
       <div className=" mx-auto flex w-full max-w-7xl items-center justify-between text-gray-300">
-        <h1 className="text-sm ">Free shipping on domestic orders over $75!</h1>
+        <h1 className="text-sm">Free shipping on domestic orders over $75!</h1>
         <div className="flex items-center space-x-6 text-xs">
           <div className="-mt-1 flex items-center border-b">
             <label htmlFor="search">

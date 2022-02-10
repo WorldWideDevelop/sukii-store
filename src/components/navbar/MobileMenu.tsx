@@ -9,7 +9,11 @@ interface iMobileMenuProps {
   isOpenModal: boolean
 }
 
-const nav_item = [
+export const nav_item = [
+  {
+    name: 'All',
+    href: '/',
+  },
   {
     name: 'sale',
     href: '/sale',
@@ -35,10 +39,6 @@ const nav_item = [
     href: '/collections',
   },
 ]
-
-const Spacer = tw.div`
-    h-20
-`
 
 function MobileMenu({ toggleModal, isOpenModal }: iMobileMenuProps) {
   return (
