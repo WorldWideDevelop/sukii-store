@@ -3,6 +3,7 @@ import React from 'react'
 
 import { cleanString, convertPrice } from '@lib/formatter'
 import type { Product } from '@lib/types'
+import Image from 'next/image'
 
 interface iProps {
   product: Product
@@ -11,12 +12,16 @@ interface iProps {
 export default function ProductCard({ product }: iProps) {
   return (
     <Link href={`/${cleanString(product.category)}/${product.id}`}>
-      <a className="h-64 w-72 rounded-lg border border-gray-100 p-4 pb-16 shadow-md hover:cursor-pointer">
-        <img
-          className="aspect-square h-full w-full"
-          src={product.image}
-          alt={product.title}
-        />
+      <a className="w-72 transform rounded-lg border border-gray-100 p-4 shadow-md duration-200 hover:scale-95 hover:cursor-pointer">
+        <div className="mb-4 flex items-center justify-center">
+          <Image
+            className="mx-auto aspect-square"
+            src={product.image}
+            alt={product.title}
+            height={254}
+            width={214}
+          />
+        </div>
         <div className="flex items-center justify-between space-x-4 font-semibold text-gray-900">
           <h1 className="truncate">{product.title}</h1>
           <p>{convertPrice(product.price)}</p>

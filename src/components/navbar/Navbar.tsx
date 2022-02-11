@@ -11,6 +11,7 @@ import MobileMenu from './MobileMenu'
 
 import SuperHeader from './SuperHeader'
 import { cleanString } from '@lib/formatter'
+import { A } from '@components/common'
 
 const Spacer = tw.div`
   w-36
@@ -54,25 +55,15 @@ function Navbar() {
               <ul className="flex space-x-8 font-semibold uppercase">
                 <li>
                   <Link href="/" passHref>
-                    <a
-                      className={`hover:text-secondary hover:text-opacity-60 ${activeLink(
-                        '/'
-                      )}`}
-                    >
-                      ALL
-                    </a>
+                    <A className={`${activeLink('/')}`}>ALL</A>
                   </Link>
                 </li>
                 {categories.map((nav: Categories) => (
                   <li key={nav.name}>
                     <Link href={nav.href} passHref>
-                      <a
-                        className={`hover:text-secondary hover:text-opacity-60 ${activeLink(
-                          `/${nav.href}`
-                        )}`}
-                      >
+                      <A className={`${activeLink(`/${nav.href}`)}`}>
                         {nav.name}
-                      </a>
+                      </A>
                     </Link>
                   </li>
                 ))}

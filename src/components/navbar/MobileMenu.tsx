@@ -1,8 +1,10 @@
 import React from 'react'
-import { XIcon } from '@heroicons/react/outline'
-import Modal from '@components/common/Modal'
-import { Categories } from '@lib/types'
 import Link from 'next/link'
+import { XIcon } from '@heroicons/react/outline'
+
+import Modal from '@components/common/Modal'
+import { A } from '@components/common'
+import { Categories } from '@lib/types'
 
 interface iMobileMenuProps {
   toggleModal: () => void
@@ -28,25 +30,13 @@ function MobileMenu({
         <ul className="my-auto space-y-2 text-left text-lg font-semibold uppercase">
           <li>
             <Link href="/" passHref>
-              <a
-                className={`hover:text-secondary hover:text-opacity-60 ${activeLink(
-                  '/'
-                )}`}
-              >
-                ALL
-              </a>
+              <A className={`${activeLink('/')}`}>ALL</A>
             </Link>
           </li>
           {nav_item.map((nav) => (
             <li key={nav.name}>
               <Link href={nav.href} passHref>
-                <a
-                  className={`hover:text-secondary hover:text-opacity-60 ${activeLink(
-                    `/${nav.href}`
-                  )}`}
-                >
-                  {nav.name}
-                </a>
+                <a className={`${activeLink(`/${nav.href}`)}`}>{nav.name}</a>
               </Link>
             </li>
           ))}

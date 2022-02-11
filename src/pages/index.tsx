@@ -1,20 +1,11 @@
-import { GetStaticProps } from 'next'
 import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination } from 'swiper'
-
-import 'swiper/css'
-import 'swiper/css/pagination'
+import { GetStaticProps } from 'next'
 
 import type { Product } from '@lib/types'
-import { cleanString, convertPrice } from '@lib/formatter'
-import Link from 'next/link'
+
 import ProductCard from '@components/ProductCard'
 import CategoryProduct from '@components/CategoryProduct'
-
-interface iProps<T> {
-  products: T
-}
+import HeroSwiper from '@components/HeroSwiper'
 
 type CatProduct<T> = {
   [K in keyof T]: Product[]
@@ -27,30 +18,15 @@ type CategoriesWithProduct<T> = {
 export default function Home<T>({ products }: CategoriesWithProduct<T>) {
   return (
     <section className="mt-8 px-4 lg:px-8">
-      <div className="h-72">
-        <Swiper
-          pagination={{
-            dynamicBullets: true,
-          }}
-          modules={[Pagination]}
-          className="rounded-lg shadow-lg"
-        >
-          <SwiperSlide>
-            <img src="/women_swiper.jpg" alt="cover" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/men_swiper.jpg" alt="cover" />
-          </SwiperSlide>
-        </Swiper>
-      </div>
+      <HeroSwiper />
       <div className="mt-8">
         {Object.keys(products)
           .sort()
           .reverse()
           .map((category) => (
-            <CategoryProduct category={category}>
+            <CategoryProduct key={category} category={category}>
               {products[category].map((product: Product) => (
-                <ProductCard product={product} />
+                <ProductCard key={product.title} product={product} />
               ))}
             </CategoryProduct>
           ))}
