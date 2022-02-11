@@ -12,3 +12,8 @@ export type ProductRating = {
   rate: number
   count: number
 }
+
+export type Categories = {
+  name: string
+  href: string
+}

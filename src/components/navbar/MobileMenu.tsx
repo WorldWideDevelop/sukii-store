@@ -1,46 +1,22 @@
 import React from 'react'
 import { XIcon } from '@heroicons/react/outline'
-import tw from 'tailwind-styled-components'
-
 import Modal from '@components/common/Modal'
+import { Categories } from '@lib/types'
+import Link from 'next/link'
 
 interface iMobileMenuProps {
   toggleModal: () => void
   isOpenModal: boolean
+  nav_item: Categories[]
+  activeLink: (path: string) => string
 }
 
-export const nav_item = [
-  {
-    name: 'All',
-    href: '/',
-  },
-  {
-    name: 'sale',
-    href: '/sale',
-  },
-  {
-    name: 'new releases',
-    href: '/new_releases',
-  },
-  {
-    name: 'men',
-    href: '/men',
-  },
-  {
-    name: 'women',
-    href: '/women',
-  },
-  {
-    name: 'kids',
-    href: '/kids',
-  },
-  {
-    name: 'collections',
-    href: '/collections',
-  },
-]
-
-function MobileMenu({ toggleModal, isOpenModal }: iMobileMenuProps) {
+function MobileMenu({
+  nav_item,
+  toggleModal,
+  isOpenModal,
+  activeLink,
+}: iMobileMenuProps) {
   return (
     <Modal closeModal={toggleModal} isOpen={isOpenModal}>
       <nav className="fixed top-0 right-0 flex h-full w-4/5 transform flex-col justify-between bg-white pb-8 pl-8 transition-all md:w-1/2">
@@ -50,8 +26,29 @@ function MobileMenu({ toggleModal, isOpenModal }: iMobileMenuProps) {
           </button>
         </div>
         <ul className="my-auto space-y-2 text-left text-lg font-semibold uppercase">
+          <li>
+            <Link href="/" passHref>
+              <a
+                className={`hover:text-secondary hover:text-opacity-60 ${activeLink(
+                  '/'
+                )}`}
+              >
+                ALL
+              </a>
+            </Link>
+          </li>
           {nav_item.map((nav) => (
-            <li>{nav.name}</li>
+            <li key={nav.name}>
+              <Link href={nav.href} passHref>
+                <a
+                  className={`hover:text-secondary hover:text-opacity-60 ${activeLink(
+                    `/${nav.href}`
+                  )}`}
+                >
+                  {nav.name}
+                </a>
+              </Link>
+            </li>
           ))}
         </ul>
         <ul className="space-y-2 text-left text-sm">

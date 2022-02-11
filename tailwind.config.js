@@ -20,5 +20,5 @@ module.exports = {
       secondary: 'hsl(240, 60%, 63%)',
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar')],
 }

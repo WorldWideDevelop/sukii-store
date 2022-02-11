@@ -1,12 +1,16 @@
 import React from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import { MenuIcon, ShoppingBagIcon, SearchIcon } from '@heroicons/react/outline'
 import VisuallyHidden from '@reach/visually-hidden'
 import tw from 'tailwind-styled-components'
-import MobileMenu, { nav_item } from './MobileMenu'
+import type { Categories } from '@lib/types'
+
+import MobileMenu from './MobileMenu'
+
 import SuperHeader from './SuperHeader'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { cleanString } from '@lib/formatter'
 
 const Spacer = tw.div`
   w-36
@@ -16,11 +20,25 @@ function Navbar() {
   const router = useRouter()
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 })
   const [openModal, setOpenModal] = React.useState(false)
+  const [categories, setCategories] = React.useState<Categories[]>([])
+
+  React.useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await fetch('https://fakestoreapi.com/products/categories')
+      const categories = await res.json()
+      const transform = categories.map((d: string) => ({
+        name: d,
+        href: cleanString(d),
+      }))
+      setCategories(transform)
+    }
+    fetchCategories()
+  }, [])
 
   const toggleModal = () => setOpenModal(!openModal)
 
   const activeLink = (path: string) =>
-    router.pathname === path ? 'text-secondary' : ''
+    router.asPath === path ? 'text-secondary' : ''
 
   return (
     <>
@@ -31,23 +49,36 @@ function Navbar() {
             <span className="text-primary">Fake</span>
             Commerce
           </h1>
-          <nav className="mx-auto">
-            <ul className="flex space-x-8 font-semibold uppercase">
-              {nav_item.map((nav) => (
-                <li key={nav.name}>
-                  <Link href={nav.href} passHref>
+          {!isTabletOrMobile && (
+            <nav className="mx-auto">
+              <ul className="flex space-x-8 font-semibold uppercase">
+                <li>
+                  <Link href="/" passHref>
                     <a
                       className={`hover:text-secondary hover:text-opacity-60 ${activeLink(
-                        nav.href
+                        '/'
                       )}`}
                     >
-                      {nav.name}
+                      ALL
                     </a>
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </nav>
+                {categories.map((nav: Categories) => (
+                  <li key={nav.name}>
+                    <Link href={nav.href} passHref>
+                      <a
+                        className={`hover:text-secondary hover:text-opacity-60 ${activeLink(
+                          `/${nav.href}`
+                        )}`}
+                      >
+                        {nav.name}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
           <Spacer />
           {isTabletOrMobile && (
             <div className="flex items-center space-x-3 lg:hidden">
@@ -69,7 +100,12 @@ function Navbar() {
       </header>
 
       {isTabletOrMobile && (
-        <MobileMenu toggleModal={toggleModal} isOpenModal={openModal} />
+        <MobileMenu
+          nav_item={categories}
+          toggleModal={toggleModal}
+          isOpenModal={openModal}
+          activeLink={activeLink}
+        />
       )}
     </>
   )
