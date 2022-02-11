@@ -29,7 +29,7 @@ function Navbar() {
       const categories = await res.json()
       const transform = categories.map((d: string) => ({
         name: d,
-        href: cleanString(d),
+        href: d,
       }))
       setCategories(transform)
     }
@@ -39,7 +39,7 @@ function Navbar() {
   const toggleModal = () => setOpenModal(!openModal)
 
   const activeLink = (path: string) =>
-    router.asPath === path ? 'text-secondary' : ''
+    router.query.category === path ? 'text-secondary' : ''
 
   return (
     <>
@@ -60,8 +60,8 @@ function Navbar() {
                 </li>
                 {categories.map((nav: Categories) => (
                   <li key={nav.name}>
-                    <Link href={nav.href} passHref>
-                      <A className={`${activeLink(`/${nav.href}`)}`}>
+                    <Link href={encodeURIComponent(nav.href)} passHref>
+                      <A className={`${activeLink(`${nav.href}`)}`}>
                         {nav.name}
                       </A>
                     </Link>

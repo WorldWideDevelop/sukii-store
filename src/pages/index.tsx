@@ -6,6 +6,7 @@ import type { Product } from '@lib/types'
 import ProductCard from '@components/ProductCard'
 import CategoryProduct from '@components/CategoryProduct'
 import HeroSwiper from '@components/HeroSwiper'
+import { Container } from '@components/common'
 
 type CatProduct<T> = {
   [K in keyof T]: Product[]
@@ -17,7 +18,7 @@ type CategoriesWithProduct<T> = {
 
 export default function Home<T>({ products }: CategoriesWithProduct<T>) {
   return (
-    <section className="mt-8 px-4 lg:px-8">
+    <Container>
       <HeroSwiper />
       <div className="mt-8">
         {Object.keys(products)
@@ -31,7 +32,7 @@ export default function Home<T>({ products }: CategoriesWithProduct<T>) {
             </CategoryProduct>
           ))}
       </div>
-    </section>
+    </Container>
   )
 }
 
