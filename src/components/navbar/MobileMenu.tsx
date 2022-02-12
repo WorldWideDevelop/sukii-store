@@ -35,7 +35,7 @@ function MobileMenu({
           </li>
           {nav_item.map((nav) => (
             <li key={nav.name}>
-              <Link href={encodeURIComponent(nav.href)} passHref>
+              <Link href={`/${encodeURIComponent(nav.href)}`} passHref>
                 <a className={`${activeLink(`${nav.href}`)}`}>{nav.name}</a>
               </Link>
             </li>

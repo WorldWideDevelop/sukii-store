@@ -27,7 +27,12 @@ export default function ProductCard({ product }: iProps) {
           <p>{convertPrice(product.price)}</p>
         </div>
         <div className="flex items-center justify-between space-x-4">
-          <p className="text-gray-700">{product.rating.rate}/5</p>
+          <p className="text-gray-700">
+            {product.rating.rate}/5{' '}
+            <span className="text-sm text-gray-500">
+              ({product.rating.count})
+            </span>
+          </p>
         </div>
       </a>
     </Link>

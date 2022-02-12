@@ -1,6 +1,6 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination } from 'swiper'
+import { Pagination, Autoplay } from 'swiper'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -12,7 +12,11 @@ export default function HeroSwiper() {
         pagination={{
           dynamicBullets: true,
         }}
-        modules={[Pagination]}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: false,
+        }}
+        modules={[Pagination, Autoplay]}
         className="rounded-lg shadow-lg"
       >
         <SwiperSlide>

@@ -12,13 +12,12 @@ interface iProps {
 }
 
 function Category({ products, category }: iProps) {
-  console.log(products)
   return (
     <Container>
       <Title>{category}</Title>
       <div className="flex flex-wrap justify-center gap-4 pb-6">
         {products.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard key={product.title} product={product} />
         ))}
       </div>
     </Container>

@@ -12,6 +12,8 @@ import MobileMenu from './MobileMenu'
 import SuperHeader from './SuperHeader'
 import { cleanString } from '@lib/formatter'
 import { A } from '@components/common'
+import useSWR from 'swr'
+import { fetcher } from '@lib/fetcher'
 
 const Spacer = tw.div`
   w-36
@@ -21,25 +23,27 @@ function Navbar() {
   const router = useRouter()
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 })
   const [openModal, setOpenModal] = React.useState(false)
-  const [categories, setCategories] = React.useState<Categories[]>([])
+  const { data, error } = useSWR(
+    'https://fakestoreapi.com/products/categories',
+    fetcher
+  )
 
-  React.useEffect(() => {
-    const fetchCategories = async () => {
-      const res = await fetch('https://fakestoreapi.com/products/categories')
-      const categories = await res.json()
-      const transform = categories.map((d: string) => ({
-        name: d,
-        href: d,
-      }))
-      setCategories(transform)
+  const categories = React.useMemo(() => {
+    let category = []
+
+    if (!error && data) {
+      category = data?.map((d: string) => ({ name: d, href: d }))
     }
-    fetchCategories()
-  }, [])
+
+    return category
+  }, [data])
 
   const toggleModal = () => setOpenModal(!openModal)
 
   const activeLink = (path: string) =>
-    router.query.category === path ? 'text-secondary' : ''
+    router.query.category === path || router.asPath === path
+      ? 'text-secondary'
+      : ''
 
   return (
     <>
@@ -60,7 +64,7 @@ function Navbar() {
                 </li>
                 {categories.map((nav: Categories) => (
                   <li key={nav.name}>
-                    <Link href={encodeURIComponent(nav.href)} passHref>
+                    <Link href={`/${encodeURIComponent(nav.href)}`} passHref>
                       <A className={`${activeLink(`${nav.href}`)}`}>
                         {nav.name}
                       </A>
