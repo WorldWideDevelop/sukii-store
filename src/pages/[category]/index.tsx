@@ -15,7 +15,7 @@ function Category({ products, category }: iProps) {
   return (
     <Container>
       <Title>{category}</Title>
-      <div className="flex flex-wrap justify-center gap-4 pb-6">
+      <div className="flex flex-wrap gap-4 pb-6">
         {products.map((product) => (
           <ProductCard key={product.title} product={product} />
         ))}

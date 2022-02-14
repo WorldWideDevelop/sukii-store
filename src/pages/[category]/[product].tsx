@@ -7,13 +7,11 @@ import React from 'react'
 
 interface IProps {
   product: Product
-  productsInCategory: Product[]
+  filterProd: Product[]
   category: string
 }
 
-export default function SingleProduct({ product, productsInCategory }: IProps) {
-  const filterProd = productsInCategory.filter((d) => d.id !== product.id)
-
+export default function SingleProduct({ product, filterProd }: IProps) {
   return (
     <Container>
       <ProductCard product={product} />
@@ -36,9 +34,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
   )
   const product = await resProducts.json()
   const productsInCategory = await resCategories.json()
+  const filterProd = productsInCategory.filter(
+    (d: Product) => d.id !== product.id
+  )
 
   return {
-    props: { product, productsInCategory },
+    props: { product, filterProd },
+    revalidate: 10,
   }
 }
 
@@ -52,6 +54,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }

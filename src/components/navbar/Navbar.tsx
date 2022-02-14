@@ -50,10 +50,12 @@ function Navbar() {
       <SuperHeader />
       <header className="border-t-black-primary border-t-2 border-b border-gray-300 p-5 px-4 lg:px-8">
         <section className="mx-auto flex w-full max-w-7xl items-center justify-between">
-          <h1 className="text-xl font-bold tracking-wider lg:text-2xl">
-            <span className="text-primary">Fake</span>
-            Commerce
-          </h1>
+          <Link href="/" passHref>
+            <a className="text-xl font-bold tracking-wider lg:text-2xl">
+              <span className="text-primary">Fake</span>
+              Commerce
+            </a>
+          </Link>
           {!isTabletOrMobile && (
             <nav className="mx-auto">
               <ul className="flex space-x-8 font-semibold uppercase">

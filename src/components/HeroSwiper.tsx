@@ -5,6 +5,13 @@ import { Pagination, Autoplay } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
+const images = [
+  'women_swiper.jpg',
+  'men_swiper.jpg',
+  'jewelry.jpg',
+  'electronics.jpg',
+]
+
 export default function HeroSwiper() {
   return (
     <div className="h-72">
@@ -19,12 +26,11 @@ export default function HeroSwiper() {
         modules={[Pagination, Autoplay]}
         className="rounded-lg shadow-lg"
       >
-        <SwiperSlide>
-          <img src="/women_swiper.jpg" alt="cover" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/men_swiper.jpg" alt="cover" />
-        </SwiperSlide>
+        {images.map((image) => (
+          <SwiperSlide key={image}>
+            <img src={`/${image}`} alt="cover" />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   )

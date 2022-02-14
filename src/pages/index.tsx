@@ -8,30 +8,30 @@ import CategoryProduct from '@components/CategoryProduct'
 import HeroSwiper from '@components/HeroSwiper'
 import { Container } from '@components/common'
 
-type CatProduct<T> = {
-  [K in keyof T]: Product[]
+type CategoriesWithProduct = {
+  products: any
 }
 
-type CategoriesWithProduct<T> = {
-  products: CatProduct<T>
-}
+type ProductsWithKeys = Record<string, Product[]>
 
-export default function Home<T>({ products }: CategoriesWithProduct<T>) {
+export default function Home({ products }: CategoriesWithProduct) {
+  const renderProducts = React.useMemo(() => {
+    return Object.keys(products)
+      .sort()
+      .reverse()
+      .map((category) => (
+        <CategoryProduct key={category} category={category}>
+          {products[category].map((product: Product) => (
+            <ProductCard key={product.title} product={product} />
+          ))}
+        </CategoryProduct>
+      ))
+  }, [products])
+
   return (
     <Container>
       <HeroSwiper />
-      <div className="mt-8">
-        {Object.keys(products)
-          .sort()
-          .reverse()
-          .map((category) => (
-            <CategoryProduct key={category} category={category}>
-              {products[category].map((product: Product) => (
-                <ProductCard key={product.title} product={product} />
-              ))}
-            </CategoryProduct>
-          ))}
-      </div>
+      <div className="mt-8">{renderProducts}</div>
     </Container>
   )
 }
@@ -40,11 +40,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const response = await fetch('https://fakestoreapi.com/products')
   const products = await response.json()
 
-  const newProd = products.reduce((r: any, a: Product) => {
+  const newProd = products.reduce((r: ProductsWithKeys, a: Product) => {
     r[a.category] = r[a.category] || []
     r[a.category].push(a)
     return r
-  }, {})
+  }, {} as ProductsWithKeys)
 
   return {
     props: {
