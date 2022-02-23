@@ -3,13 +3,17 @@ import Image from 'next/image'
 
 import { convertPrice } from '@lib/formatter'
 import type { Product } from '@lib/types'
+import { useAppDispatch } from '@store-redux/hook'
+
 import { Title } from './common'
+import { addToCart } from './cart/store/cartSlice'
 
 interface IProps {
   product: Product
 }
 
 export default function ProductDetails({ product }: IProps) {
+  const dispatch = useAppDispatch()
   return (
     <div className="mb-20 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-4">
       <div className="flex items-center justify-center">
@@ -28,7 +32,10 @@ export default function ProductDetails({ product }: IProps) {
           <h3 className="text-lg font-semibold">
             {convertPrice(product.price)}
           </h3>
-          <button className="rounded-lg bg-secondary px-4 py-2 font-semibold text-white hover:bg-opacity-70">
+          <button
+            onClick={() => dispatch(addToCart(product))}
+            className="rounded-lg bg-secondary px-4 py-2 font-semibold text-white hover:bg-opacity-70"
+          >
             ADD TO CART
           </button>
         </div>

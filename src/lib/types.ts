@@ -8,6 +8,8 @@ export type Product = {
   rating: ProductRating
 }
 
+export type ProductCart = Product & { qty: number }
+
 export type ProductRating = {
   rate: number
   count: number

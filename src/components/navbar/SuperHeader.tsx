@@ -1,8 +1,16 @@
 import React from 'react'
 import VisuallyHidden from '@reach/visually-hidden'
 import { SearchIcon, ShoppingBagIcon } from '@heroicons/react/outline'
+import Cart from '../cart/Cart'
+import { useAppSelector } from '@store-redux/hook'
+import { selectCartCount } from '@components/cart/store/cartSlice'
 
-export default function SuperHeader() {
+interface IProps {
+  toggleCartModal: () => void
+}
+
+export default function SuperHeader({ toggleCartModal }: IProps) {
+  const cartCount = useAppSelector(selectCartCount)
   return (
     <section className="text-whity-secondary hidden bg-gray-900 px-4 lg:block lg:px-8 lg:py-2">
       <div className=" mx-auto flex w-full max-w-7xl items-center justify-between text-gray-300">
@@ -21,9 +29,14 @@ export default function SuperHeader() {
             <VisuallyHidden>Search</VisuallyHidden>
           </div>
           <button>Help</button>
-          <button>
+          <button className="relative" onClick={toggleCartModal}>
             <ShoppingBagIcon className="h-4 w-4" />
             <VisuallyHidden>Cart</VisuallyHidden>
+            {cartCount > 0 && (
+              <span className="absolute top-0 -translate-y-3 transform rounded-full bg-primary bg-opacity-80 px-2 py-1 text-xs">
+                {cartCount}
+              </span>
+            )}
           </button>
         </div>
       </div>

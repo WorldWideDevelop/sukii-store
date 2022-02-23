@@ -10,10 +10,10 @@ import type { Categories } from '@lib/types'
 import MobileMenu from './MobileMenu'
 
 import SuperHeader from './SuperHeader'
-import { cleanString } from '@lib/formatter'
 import { A } from '@components/common'
 import useSWR from 'swr'
 import { fetcher } from '@lib/fetcher'
+import Cart from '@components/cart/Cart'
 
 const Spacer = tw.div`
   w-36
@@ -23,6 +23,7 @@ function Navbar() {
   const router = useRouter()
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 })
   const [openModal, setOpenModal] = React.useState(false)
+  const [openCart, setOpenCart] = React.useState(false)
   const { data, error } = useSWR(
     'https://fakestoreapi.com/products/categories',
     fetcher
@@ -39,6 +40,7 @@ function Navbar() {
   }, [data])
 
   const toggleModal = () => setOpenModal(!openModal)
+  const toggleCartModal = () => setOpenCart(!openCart)
 
   const activeLink = (path: string) =>
     router.query.category === path || router.asPath === path
@@ -47,7 +49,7 @@ function Navbar() {
 
   return (
     <>
-      <SuperHeader />
+      <SuperHeader toggleCartModal={toggleCartModal} />
       <header className="border-t-black-primary border-t-2 border-b border-gray-300 p-5 px-4 lg:px-8">
         <section className="mx-auto flex w-full max-w-7xl items-center justify-between">
           <Link href="/" passHref>
@@ -79,7 +81,7 @@ function Navbar() {
           <Spacer />
           {isTabletOrMobile && (
             <div className="flex items-center space-x-3 lg:hidden">
-              <button onClick={toggleModal}>
+              <button onClick={toggleCartModal}>
                 <ShoppingBagIcon className="h-5 w-5" />
                 <VisuallyHidden>Cart</VisuallyHidden>
               </button>
@@ -104,6 +106,7 @@ function Navbar() {
           activeLink={activeLink}
         />
       )}
+      <Cart toggleModal={toggleCartModal} isOpenModal={openCart} />
     </>
   )
 }
