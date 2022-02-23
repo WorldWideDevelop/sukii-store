@@ -21,7 +21,7 @@ function MobileMenu({
 }: iMobileMenuProps) {
   return (
     <Modal closeModal={toggleModal} isOpen={isOpenModal}>
-      <nav className="fixed top-0 right-0 flex h-full w-4/5 transform flex-col justify-between bg-white pb-8 pl-8 transition-all md:w-1/2">
+      <section className="fixed top-0 right-0 flex h-full w-4/5 transform flex-col justify-between bg-white pb-8 pl-8 transition-all md:w-1/2">
         <div className="px-2 py-5 text-right lg:px-8">
           <button onClick={toggleModal} className="p-2">
             <XIcon className="h-4 w-4 hover:text-gray-300" />
@@ -46,7 +46,7 @@ function MobileMenu({
           <li>Privacy Policy</li>
           <li>Contact Us</li>
         </ul>
-      </nav>
+      </section>
     </Modal>
   )
 }

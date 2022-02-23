@@ -35,8 +35,13 @@ function Cart({ toggleModal, isOpenModal }: iMobileMenuProps) {
         </div>
         <div className="flex flex-col space-y-4 px-2 py-5 lg:px-8">
           <p className="text-xl font-semibold">
-            TOTAL: <span>{convertPrice(cartTotalPrice)}</span>
+            ORDER TOTAL: <span>{convertPrice(cartTotalPrice)}</span>
           </p>
+          <div>
+            <button className="rounded-md bg-secondary px-4 py-1 text-white hover:bg-opacity-70">
+              Continue to Payment
+            </button>
+          </div>
         </div>
       </div>
     </Modal>

@@ -81,7 +81,7 @@ function Navbar() {
           <Spacer />
           {isTabletOrMobile && (
             <div className="flex items-center space-x-3 lg:hidden">
-              <button onClick={toggleCartModal}>
+              <button onClick={toggleModal}>
                 <ShoppingBagIcon className="h-5 w-5" />
                 <VisuallyHidden>Cart</VisuallyHidden>
               </button>
@@ -106,7 +106,9 @@ function Navbar() {
           activeLink={activeLink}
         />
       )}
-      <Cart toggleModal={toggleCartModal} isOpenModal={openCart} />
+      {openCart && (
+        <Cart toggleModal={toggleCartModal} isOpenModal={openCart} />
+      )}
     </>
   )
 }
