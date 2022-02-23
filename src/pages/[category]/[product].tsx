@@ -1,9 +1,13 @@
+import React from 'react'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import Image from 'next/image'
+
 import CategoryProduct from '@components/CategoryProduct'
 import { Container } from '@components/common'
 import ProductCard from '@components/ProductCard'
+import { convertPrice } from '@lib/formatter'
 import type { Product } from '@lib/types'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import React from 'react'
+import ProductDetails from '@components/ProductDetails'
 
 interface IProps {
   product: Product
@@ -14,7 +18,7 @@ interface IProps {
 export default function SingleProduct({ product, filterProd }: IProps) {
   return (
     <Container>
-      <ProductCard product={product} />
+      <ProductDetails product={product} />
       <CategoryProduct category="YOU MIGHT ALSO LIKE">
         {filterProd.map((product: Product) => (
           <ProductCard key={product.title} product={product} />
