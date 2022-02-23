@@ -27,7 +27,7 @@ function MobileMenu({
             <XIcon className="h-4 w-4 hover:text-gray-300" />
           </button>
         </div>
-        <ul className="my-auto space-y-2 text-left text-lg font-semibold uppercase">
+        <ul className="my-auto space-y-4 text-left text-lg font-semibold uppercase">
           <li>
             <Link href="/" passHref>
               <A className={`${activeLink('/')}`}>ALL</A>
@@ -36,7 +36,7 @@ function MobileMenu({
           {nav_item.map((nav) => (
             <li key={nav.name}>
               <Link href={`/${encodeURIComponent(nav.href)}`} passHref>
-                <a className={`${activeLink(`${nav.href}`)}`}>{nav.name}</a>
+                <A className={`${activeLink(`${nav.href}`)}`}>{nav.name}</A>
               </Link>
             </li>
           ))}

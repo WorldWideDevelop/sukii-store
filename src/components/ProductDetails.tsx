@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { convertPrice } from '@lib/formatter'
 import type { Product } from '@lib/types'
+import { Title } from './common'
 
 interface IProps {
   product: Product
@@ -21,7 +22,7 @@ export default function ProductDetails({ product }: IProps) {
         />
       </div>
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold">{product.title}</h1>
+        <Title>{product.title}</Title>
         <p>{product.description}</p>
         <div className="flex items-center justify-between space-x-2">
           <h3 className="text-lg font-semibold">
