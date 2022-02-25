@@ -19,3 +19,10 @@ export type Categories = {
   name: string
   href: string
 }
+
+export type CheckOutItem = {
+  name: string
+  amount: number
+  currency: 'usd' | 'php'
+  quantity: number
+}

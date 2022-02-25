@@ -8,11 +8,11 @@ import CategoryProduct from '@components/CategoryProduct'
 import HeroSwiper from '@components/HeroSwiper'
 import { Container } from '@components/common'
 
-type CategoriesWithProduct = {
-  products: any
-}
-
 type ProductsWithKeys = Record<string, Product[]>
+
+type CategoriesWithProduct = {
+  products: ProductsWithKeys
+}
 
 export default function Home({ products }: CategoriesWithProduct) {
   const renderProducts = React.useMemo(() => {

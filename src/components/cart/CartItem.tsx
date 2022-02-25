@@ -4,7 +4,7 @@ import { useAppDispatch } from '@store-redux/hook'
 import { convertPrice } from '@lib/formatter'
 import type { ProductCart } from '@lib/types'
 import { addToCart, removeItem } from './store/cartSlice'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
+import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/outline'
 
 interface IProps {
   product: ProductCart
@@ -30,19 +30,19 @@ export default function CartItem({ product }: IProps) {
         </div>
       </div>
       <div className="grid grid-cols-2 space-x-2">
-        <div className="flex items-center justify-center space-x-1 md:space-x-2">
+        <div className="flex items-center justify-center space-x-1">
           <button
             onClick={() => dispatch(removeItem(product))}
             className="group p-2"
           >
-            <ChevronLeftIcon className="h-4 w-4 transform duration-200 group-hover:-translate-x-1" />
+            <MinusCircleIcon className="h-4 w-4 transform duration-200 group-hover:scale-105" />
           </button>
           <span className="font-semibold text-primary">{product.qty}</span>
           <button
             onClick={() => dispatch(addToCart(product))}
             className="group p-2"
           >
-            <ChevronRightIcon className="h-4 w-4 transform duration-200 group-hover:translate-x-1" />
+            <PlusCircleIcon className="h-4 w-4 transform duration-200 group-hover:scale-105" />
           </button>
         </div>
         <div className="flex flex-col items-center justify-center space-y-2">

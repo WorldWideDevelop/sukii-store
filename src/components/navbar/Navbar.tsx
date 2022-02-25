@@ -14,6 +14,8 @@ import { A } from '@components/common'
 import useSWR from 'swr'
 import { fetcher } from '@lib/fetcher'
 import Cart from '@components/cart/Cart'
+import { useAppSelector } from '@store-redux/hook'
+import { selectCartCount } from '@components/cart/store/cartSlice'
 
 const Spacer = tw.div`
   w-36
@@ -24,6 +26,9 @@ function Navbar() {
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 })
   const [openModal, setOpenModal] = React.useState(false)
   const [openCart, setOpenCart] = React.useState(false)
+
+  const cartCount = useAppSelector(selectCartCount)
+
   const { data, error } = useSWR(
     'https://fakestoreapi.com/products/categories',
     fetcher
@@ -54,8 +59,8 @@ function Navbar() {
         <section className="mx-auto flex w-full max-w-7xl items-center justify-between">
           <Link href="/" passHref>
             <a className="text-xl font-bold tracking-wider lg:text-2xl">
-              <span className="text-primary">Fake</span>
-              Commerce
+              <span className="text-primary">Sukii</span>
+              Store
             </a>
           </Link>
           {!isTabletOrMobile && (
@@ -81,9 +86,14 @@ function Navbar() {
           <Spacer />
           {isTabletOrMobile && (
             <div className="flex items-center space-x-3 lg:hidden">
-              <button onClick={toggleModal}>
+              <button className="relative" onClick={toggleCartModal}>
                 <ShoppingBagIcon className="h-5 w-5" />
                 <VisuallyHidden>Cart</VisuallyHidden>
+                {cartCount > 0 && (
+                  <span className="absolute top-0 -translate-y-3 transform rounded-full bg-primary bg-opacity-80 px-2 py-1 text-xs text-white">
+                    {cartCount}
+                  </span>
+                )}
               </button>
               <button onClick={toggleModal}>
                 <SearchIcon className="h-5 w-5" />
