@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 
 import type { Product } from '@lib/types'
 
-import { Container, Title } from '@components/common'
+import { Container, MaxWrapper, Title } from '@components/common'
 import ProductCard from '@components/ProductCard'
 
 interface iProps {
@@ -14,12 +14,14 @@ interface iProps {
 function Category({ products, category }: iProps) {
   return (
     <Container>
-      <Title>{category}</Title>
-      <div className="flex flex-wrap gap-4 pb-6">
-        {products.map((product) => (
-          <ProductCard key={product.title} product={product} />
-        ))}
-      </div>
+      <MaxWrapper>
+        <Title>{category}</Title>
+        <div className="flex flex-wrap gap-4 pb-6">
+          {products.map((product) => (
+            <ProductCard key={product.title} product={product} />
+          ))}
+        </div>
+      </MaxWrapper>
     </Container>
   )
 }

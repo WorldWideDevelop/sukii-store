@@ -11,3 +11,7 @@ mb-4 text-xl font-bold uppercase tracking-wider
 export const A = tw.a`
 hover:text-secondary hover:text-opacity-60
 `
+
+export const MaxWrapper = tw.div`
+mx-auto max-w-7xl
+`

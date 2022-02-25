@@ -1,13 +1,12 @@
 import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Image from 'next/image'
 
 import CategoryProduct from '@components/CategoryProduct'
-import { Container } from '@components/common'
+import { Container, MaxWrapper } from '@components/common'
 import ProductCard from '@components/ProductCard'
-import { convertPrice } from '@lib/formatter'
-import type { Product } from '@lib/types'
 import ProductDetails from '@components/ProductDetails'
+
+import type { Product } from '@lib/types'
 
 interface IProps {
   product: Product
@@ -18,12 +17,14 @@ interface IProps {
 export default function SingleProduct({ product, filterProd }: IProps) {
   return (
     <Container>
-      <ProductDetails product={product} />
-      <CategoryProduct category="YOU MIGHT ALSO LIKE">
-        {filterProd.map((product: Product) => (
-          <ProductCard key={product.title} product={product} />
-        ))}
-      </CategoryProduct>
+      <MaxWrapper>
+        <ProductDetails product={product} />
+        <CategoryProduct category="YOU MIGHT ALSO LIKE">
+          {filterProd.map((product: Product) => (
+            <ProductCard key={product.title} product={product} />
+          ))}
+        </CategoryProduct>
+      </MaxWrapper>
     </Container>
   )
 }

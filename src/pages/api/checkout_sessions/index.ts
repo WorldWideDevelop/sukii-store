@@ -11,18 +11,13 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    // const amount: number = req.body.amount
     try {
-      // Validate the amount that was passed from the client.
-      // if (!(amount >= MIN_AMOUNT && amount <= MAX_AMOUNT)) {
-      //   throw new Error('Invalid amount.')
-      // }
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
         submit_type: 'pay',
         payment_method_types: ['card'],
         line_items: req?.body?.items ?? [],
-        success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/`,
       }
 
