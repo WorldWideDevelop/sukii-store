@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^1.7.2",
     "@stripe/stripe-js": "^1.23.0",
     "axios": "^0.26.0",
+    "canvas-confetti": "^1.5.1",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
     "next": "latest",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.4.0",
+    "@types/canvas-confetti": "^1.4.2",
     "@types/micro": "^7.3.6",
     "@types/micro-cors": "^0.1.2",
     "@types/node": "17.0.4",
