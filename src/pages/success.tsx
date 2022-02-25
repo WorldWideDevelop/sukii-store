@@ -19,13 +19,15 @@ export default function Success({
   )
 
   React.useEffect(() => {
-    data && data.statusCode !== 500 && shootFireworks()
+    if (data?.statusCode !== 500 && data) {
+      data && !error && shootFireworks()
+    }
   }, [data])
 
   return (
     <Container>
       <MaxWrapper>
-        {error || data.statusCode === 500 ? (
+        {error || data?.statusCode === 500 ? (
           <div className="max-w-md p-2 mx-auto rounded-md bg-rose-100 text-rose-500">
             <p className="text-2xl font-semibold text-primary">
               Sorry, something went wrong!
