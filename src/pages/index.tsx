@@ -6,7 +6,7 @@ import type { Product } from '@lib/types'
 import ProductCard from '@components/ProductCard'
 import CategoryProduct from '@components/CategoryProduct'
 import HeroSwiper from '@components/HeroSwiper'
-import { Container } from '@components/common'
+import { Container, MaxWrapper } from '@components/common'
 
 type ProductsWithKeys = Record<string, Product[]>
 
@@ -30,8 +30,10 @@ export default function Home({ products }: CategoriesWithProduct) {
 
   return (
     <Container>
-      <HeroSwiper />
-      <div className="mt-8">{renderProducts}</div>
+      <MaxWrapper>
+        <HeroSwiper />
+        <div className="mt-8">{renderProducts}</div>
+      </MaxWrapper>
     </Container>
   )
 }
