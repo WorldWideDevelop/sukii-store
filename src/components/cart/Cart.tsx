@@ -18,13 +18,7 @@ interface iMobileMenuProps {
 function Cart({ toggleModal, isOpenModal }: iMobileMenuProps) {
   const cartItems = useAppSelector(selectCartItems)
   const cartTotalPrice = useAppSelector(selectCartTotal)
-  // {
-  //   name: 'Custom amount donation',
-  //   amount: formatAmountForStripe(amount, CURRENCY),
-  //   currency: CURRENCY,
-  //   quantity: 1,
-  // },
-  console.log(cartItems)
+
   const redirectToCheckout = async () => {
     let items: CheckOutItem[] = []
     if (cartItems.length) {
@@ -47,7 +41,7 @@ function Cart({ toggleModal, isOpenModal }: iMobileMenuProps) {
   return (
     <Modal closeModal={toggleModal} isOpen={isOpenModal}>
       <div className="fixed top-0 right-0 flex h-full w-4/5 max-w-xs transform flex-col justify-between bg-white pb-8 pl-4 transition-all md:w-1/2 lg:pl-8">
-        <div>
+        <div className="h-3/4 overflow-y-auto">
           <div className="flex items-center justify-between py-5 lg:px-6">
             <h1 className="text-xl font-bold">SHOPPING CART</h1>
             <button onClick={toggleModal} className="p-2">
