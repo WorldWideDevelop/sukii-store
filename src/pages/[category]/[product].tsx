@@ -31,14 +31,18 @@ export default function SingleProduct({ product, filterProd }: IProps) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context
-  const resProducts = await fetch(
-    `https://fakestoreapi.com/products/${params?.product}`
-  )
-  const resCategories = await fetch(
-    `https://fakestoreapi.com/products/category/${params?.category}`
-  )
-  const product = await resProducts.json()
-  const productsInCategory = await resCategories.json()
+
+  const [product, productsInCategory] = await Promise.all([
+    await (
+      await fetch(`https://fakestoreapi.com/products/${params?.product}`)
+    ).json(),
+    await (
+      await fetch(
+        `https://fakestoreapi.com/products/category/${params?.category}`
+      )
+    ).json(),
+  ])
+
   const filterProd = productsInCategory.filter(
     (d: Product) => d.id !== product.id
   )

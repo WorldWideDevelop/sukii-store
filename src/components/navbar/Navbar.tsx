@@ -5,17 +5,16 @@ import { useMediaQuery } from 'react-responsive'
 import { MenuIcon, ShoppingBagIcon, SearchIcon } from '@heroicons/react/outline'
 import VisuallyHidden from '@reach/visually-hidden'
 import tw from 'tailwind-styled-components'
-import type { Categories } from '@lib/types'
 
 import MobileMenu from './MobileMenu'
-
-import SuperHeader from './SuperHeader'
 import { A } from '@components/common'
-import useSWR from 'swr'
-import { fetcher } from '@lib/fetcher'
 import Cart from '@components/cart/Cart'
-import { useAppSelector } from '@store-redux/hook'
 import { selectCartCount } from '@components/cart/store/cartSlice'
+import SuperHeader from './SuperHeader'
+
+import { useAppSelector } from '@store-redux/hook'
+import type { Categories } from '@lib/types'
+import { useCategories } from '@hooks/useCategories'
 
 const Spacer = tw.div`
   w-36
@@ -29,15 +28,12 @@ function Navbar() {
 
   const cartCount = useAppSelector(selectCartCount)
 
-  const { data, error } = useSWR(
-    'https://fakestoreapi.com/products/categories',
-    fetcher
-  )
+  const { data, isError, isLoading } = useCategories()
 
   const categories = React.useMemo(() => {
     let category = []
 
-    if (!error && data) {
+    if (data && !isError) {
       category = data?.map((d: string) => ({ name: d, href: d }))
     }
 
@@ -51,6 +47,26 @@ function Navbar() {
     router.query.category === path || router.asPath === path
       ? 'text-secondary'
       : ''
+
+  const renderCategories = () => {
+    return isLoading
+      ? Array.of(1, 2, 3).map((d, i) => (
+          <li key={i} className="flex items-center justify-center">
+            <div
+              className={`${activeLink(
+                '/'
+              )} h-[19px] w-[100px] animate-pulse rounded-lg bg-gray-500`}
+            ></div>
+          </li>
+        ))
+      : categories.map((nav: Categories) => (
+          <li key={nav.name}>
+            <Link href={`/${encodeURIComponent(nav.href)}`} passHref>
+              <A className={`${activeLink(`${nav.href}`)}`}>{nav.name}</A>
+            </Link>
+          </li>
+        ))
+  }
 
   return (
     <>
@@ -71,15 +87,7 @@ function Navbar() {
                     <A className={`${activeLink('/')}`}>ALL</A>
                   </Link>
                 </li>
-                {categories.map((nav: Categories) => (
-                  <li key={nav.name}>
-                    <Link href={`/${encodeURIComponent(nav.href)}`} passHref>
-                      <A className={`${activeLink(`${nav.href}`)}`}>
-                        {nav.name}
-                      </A>
-                    </Link>
-                  </li>
-                ))}
+                {renderCategories()}
               </ul>
             </nav>
           )}

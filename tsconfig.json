@@ -19,6 +19,7 @@
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
       "@lib/*": ["lib/*"],
+      "@hooks/*": ["hooks/*"],
       "@store-redux/*": ["store-redux/*"]
     }
   },
