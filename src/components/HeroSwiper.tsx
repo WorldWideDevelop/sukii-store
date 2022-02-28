@@ -29,7 +29,12 @@ export default function HeroSwiper() {
       >
         {images.map((image) => (
           <SwiperSlide key={image}>
-            <img src={`/${image}`} alt="cover" className="h-full w-full" />
+            <Image
+              src={`/${image}`}
+              alt="cover"
+              layout="fill"
+              objectFit="cover"
+            />
           </SwiperSlide>
         ))}
       </Swiper>
