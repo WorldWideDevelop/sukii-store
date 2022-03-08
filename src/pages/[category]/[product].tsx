@@ -7,6 +7,7 @@ import ProductCard from '@components/ProductCard'
 import ProductDetails from '@components/ProductDetails'
 
 import type { Product } from '@lib/types'
+import Meta from '@components/Meta'
 
 interface IProps {
   product: Product
@@ -17,6 +18,12 @@ interface IProps {
 export default function SingleProduct({ product, filterProd }: IProps) {
   return (
     <Container>
+      <Meta
+        title={product.title}
+        description={product.description}
+        category={product.category}
+        productId={`${product.id}`}
+      />
       <MaxWrapper>
         <ProductDetails product={product} />
         <CategoryProduct category="YOU MIGHT ALSO LIKE">

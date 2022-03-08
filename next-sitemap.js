@@ -1,5 +1,4 @@
-const siteUrl = 'https://sukiistore.vercel.app/'
-
+const siteUrl = 'https://sukiistore.vercel.app'
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,

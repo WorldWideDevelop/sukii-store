@@ -50,7 +50,7 @@ function Navbar() {
 
   const renderCategories = () => {
     return isLoading
-      ? Array.of(1, 2, 3).map((d, i) => (
+      ? [...new Array(3)].map((d, i) => (
           <li key={i} className="flex items-center justify-center">
             <div
               className={`${activeLink(

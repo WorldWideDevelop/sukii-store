@@ -5,6 +5,7 @@ import type { Product } from '@lib/types'
 
 import { Container, MaxWrapper, Title } from '@components/common'
 import ProductCard from '@components/ProductCard'
+import Meta from '@components/Meta'
 
 interface iProps {
   products: Product[]
@@ -14,6 +15,7 @@ interface iProps {
 function Category({ products, category }: iProps) {
   return (
     <Container>
+      <Meta category={category} description={`All kinds of ${category}`} />
       <MaxWrapper>
         <Title>{category}</Title>
         <div className="flex flex-wrap gap-4 pb-6">

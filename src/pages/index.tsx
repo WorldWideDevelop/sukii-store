@@ -7,6 +7,7 @@ import ProductCard from '@components/ProductCard'
 import CategoryProduct from '@components/CategoryProduct'
 import HeroSwiper from '@components/HeroSwiper'
 import { Container, MaxWrapper } from '@components/common'
+import Meta from '@components/Meta'
 
 type ProductsWithKeys = Record<string, Product[]>
 
@@ -30,6 +31,7 @@ export default function Home({ products }: CategoriesWithProduct) {
 
   return (
     <Container>
+      <Meta />
       <MaxWrapper>
         <HeroSwiper />
         <div className="mt-8">{renderProducts}</div>

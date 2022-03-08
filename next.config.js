@@ -18,4 +18,5 @@ module.exports = {
     domains: ['fakestoreapi.com'],
   },
   reactStrictMode: true,
+  siteUrl: 'https://sukiistore.vercel.app',
 }
