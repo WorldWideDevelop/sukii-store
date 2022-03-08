@@ -24,8 +24,10 @@ export default function Meta({
 
   const siteTitle = category
     ? title
-      ? `Sukii Store | ${category} | ${title}`
-      : `Sukii Store | ${category}`
+      ? `Sukii Store | ${
+          category.charAt(0).toUpperCase() + category.slice(1)
+        } | ${title}`
+      : `Sukii Store | ${category.charAt(0).toUpperCase() + category.slice(1)}`
     : `Sukii Store`
 
   return (

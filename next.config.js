@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+  swcMinify: true,
   async headers() {
     return [
       {
@@ -18,5 +19,5 @@ module.exports = {
     domains: ['fakestoreapi.com'],
   },
   reactStrictMode: true,
-  siteUrl: 'https://sukiistore.vercel.app',
+  siteUrl: '',
 }
