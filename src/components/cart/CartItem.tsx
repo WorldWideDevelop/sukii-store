@@ -5,6 +5,7 @@ import { convertPrice } from '@lib/formatter'
 import type { ProductCart } from '@lib/types'
 import { addToCart, removeItem } from './store/cartSlice'
 import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/outline'
+import Image from 'next/image'
 
 interface IProps {
   product: ProductCart
@@ -13,13 +14,16 @@ interface IProps {
 export default function CartItem({ product }: IProps) {
   const dispatch = useAppDispatch()
   return (
-    <article className="-ml-8 grid grid-cols-2 md:-ml-5">
+    <article className="-ml-8 md:-ml-5">
       <div className="flex items-center space-x-2 lg:space-x-4">
         <div className="h-10 w-10">
-          <img
-            className="hidden aspect-square h-full w-full sm:block"
+          <Image
+            className="hidden aspect-square sm:block"
             src={product.image}
             alt={product.title}
+            height={500}
+            width={300}
+            layout="responsive"
           />
         </div>
         <div className="max-w-xs">
