@@ -46,6 +46,8 @@ export default function Meta({
         <meta property="og:url" content={url} />
         <meta property="twitter:url" content={url} />
 
+        <meta name="keywords" content={title} />
+
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" href="/favicon.ico" />
         <link

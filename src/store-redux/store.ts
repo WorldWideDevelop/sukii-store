@@ -6,6 +6,7 @@ export const store = configureStore({
   reducer: {
     cart: cartReducer,
   },
+  devTools: false,
 })
 
 export type AppDispatch = typeof store.dispatch

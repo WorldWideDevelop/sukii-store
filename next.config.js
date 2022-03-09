@@ -4,12 +4,30 @@ module.exports = {
   async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|png)',
+        source: '/:all*(svg|jpg|png|css|js)',
         locale: false,
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=9999999999, must-revalidate',
+            value: 'public, max-age=2592000, s-maxage=2592000, must-revalidate',
+          },
+        ],
+      },
+      {
+        source: '/(.*)?',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+        ],
+      },
+      {
+        source: '/(.*)?',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "base-uri 'self'",
           },
         ],
       },
@@ -19,5 +37,4 @@ module.exports = {
     domains: ['fakestoreapi.com'],
   },
   reactStrictMode: true,
-  siteUrl: '',
 }
