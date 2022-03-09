@@ -34,6 +34,7 @@ export default function HeroSwiper() {
               alt="cover"
               layout="fill"
               objectFit="cover"
+              priority={true}
             />
           </SwiperSlide>
         ))}

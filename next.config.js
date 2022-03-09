@@ -13,24 +13,6 @@ module.exports = {
           },
         ],
       },
-      {
-        source: '/(.*)?',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
-        ],
-      },
-      {
-        source: '/(.*)?',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: "base-uri 'self'",
-          },
-        ],
-      },
     ]
   },
   images: {
