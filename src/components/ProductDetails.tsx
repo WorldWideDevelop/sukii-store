@@ -18,7 +18,6 @@ export default function ProductDetails({ product }: IProps) {
     <div className="mb-20 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-4">
       <div className="flex items-center justify-center">
         <Image
-          className="aspect-square"
           src={product.image}
           alt={product.title}
           height={454}

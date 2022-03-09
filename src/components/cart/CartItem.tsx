@@ -18,7 +18,7 @@ export default function CartItem({ product }: IProps) {
       <div className="flex items-center space-x-2 lg:space-x-4">
         <div className="h-10 w-10">
           <Image
-            className="hidden aspect-square sm:block"
+            className="hidden sm:block"
             src={product.image}
             alt={product.title}
             height={500}
