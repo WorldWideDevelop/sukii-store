@@ -1,14 +1,15 @@
+import axios from 'axios'
 import React from 'react'
 import { ShoppingCartIcon, XIcon } from '@heroicons/react/outline'
-import axios from 'axios'
-import { convertPrice, formatAmountForStripe } from '@lib/formatter'
 
 import Modal from '@components/common/Modal'
 import CartItem from './CartItem'
+
+import { convertPrice, formatAmountForStripe } from '@lib/formatter'
 import { useAppSelector } from '@store-redux/hook'
-import { selectCartItems, selectCartTotal } from './store/cartSlice'
 import type { CheckOutItem } from '@lib/types'
 import getStripe from '@lib/getStripe'
+import { selectCartItems, selectCartTotal } from './store/cartSlice'
 
 interface iMobileMenuProps {
   toggleModal: () => void

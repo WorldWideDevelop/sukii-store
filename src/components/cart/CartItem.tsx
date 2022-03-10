@@ -1,11 +1,11 @@
 import React from 'react'
+import Image from 'next/image'
+import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/outline'
 
 import { useAppDispatch } from '@store-redux/hook'
 import { convertPrice } from '@lib/formatter'
 import type { ProductCart } from '@lib/types'
 import { addToCart, removeItem } from './store/cartSlice'
-import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/outline'
-import Image from 'next/image'
 
 interface IProps {
   product: ProductCart

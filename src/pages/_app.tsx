@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import '@styles/globals.css'
 
 import Layout from '@components/Layout'
+
 import { store } from 'store-redux/store'
 
 function MyApp({ Component, pageProps }: AppProps) {

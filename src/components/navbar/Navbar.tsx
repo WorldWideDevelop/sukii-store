@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import { MenuIcon, ShoppingBagIcon, SearchIcon } from '@heroicons/react/outline'
@@ -10,7 +11,8 @@ import MobileMenu from './MobileMenu'
 import { A } from '@components/common'
 import Cart from '@components/cart/Cart'
 import { selectCartCount } from '@components/cart/store/cartSlice'
-import SuperHeader from './SuperHeader'
+
+const SuperHeader = dynamic(() => import('./SuperHeader'))
 
 import { useAppSelector } from '@store-redux/hook'
 import type { Categories } from '@lib/types'

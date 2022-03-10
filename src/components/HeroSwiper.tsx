@@ -1,10 +1,10 @@
 import React from 'react'
+import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay } from 'swiper'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import Image from 'next/image'
 
 const images = [
   'women_swiper.jpg',

@@ -4,6 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 
 import Modal from '@components/common/Modal'
 import { A } from '@components/common'
+
 import { Categories } from '@lib/types'
 
 interface iMobileMenuProps {

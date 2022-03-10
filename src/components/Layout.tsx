@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react'
-import Navbar from './navbar/Navbar'
+import dynamic from 'next/dynamic'
+
+const Navbar = dynamic(() => import('./navbar/Navbar'))
 
 interface IProps {
   children: ReactNode

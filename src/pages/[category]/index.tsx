@@ -1,11 +1,13 @@
 import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import dynamic from 'next/dynamic'
 
 import type { Product } from '@lib/types'
 
 import { Container, MaxWrapper, Title } from '@components/common'
-import ProductCard from '@components/ProductCard'
 import Meta from '@components/Meta'
+
+const ProductCard = dynamic(() => import('@components/ProductCard'))
 
 interface iProps {
   products: Product[]

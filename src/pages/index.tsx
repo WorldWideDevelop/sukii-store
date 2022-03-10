@@ -1,13 +1,15 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
+import dynamic from 'next/dynamic'
 
 import type { Product } from '@lib/types'
 
-import ProductCard from '@components/ProductCard'
 import CategoryProduct from '@components/CategoryProduct'
-import HeroSwiper from '@components/HeroSwiper'
 import { Container, MaxWrapper } from '@components/common'
 import Meta from '@components/Meta'
+
+const ProductCard = dynamic(() => import('@components/ProductCard'))
+const HeroSwiper = dynamic(() => import('@components/HeroSwiper'))
 
 type ProductsWithKeys = Record<string, Product[]>
 

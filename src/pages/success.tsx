@@ -1,10 +1,11 @@
 import React from 'react'
 import useSWR from 'swr'
 import { GetServerSideProps } from 'next'
+import { CheckIcon } from '@heroicons/react/outline'
 
 import { Container, MaxWrapper } from '@components/common'
+
 import { fetcher } from '@lib/fetcher'
-import { CheckIcon } from '@heroicons/react/outline'
 import { shootFireworks } from '@lib/fireworks'
 
 export default function Success({

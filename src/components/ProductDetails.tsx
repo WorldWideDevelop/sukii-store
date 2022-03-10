@@ -15,14 +15,18 @@ interface IProps {
 export default function ProductDetails({ product }: IProps) {
   const dispatch = useAppDispatch()
   return (
-    <div className="mb-20 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-4">
+    <div className="mb-20 grid grid-cols-1 gap-1 lg:grid-cols-2 lg:gap-4">
       <div className="flex items-center justify-center">
-        <Image
-          src={product.image}
-          alt={product.title}
-          height={454}
-          width={414}
-        />
+        <div className="h-[360px] w-[288px] lg:h-[454px] lg:w-[414px]">
+          <Image
+            className="aspect-auto"
+            src={product.image}
+            alt={product.title}
+            height={454}
+            width={414}
+            layout="responsive"
+          />
+        </div>
       </div>
       <div className="space-y-4">
         <Title>{product.title}</Title>
@@ -33,7 +37,7 @@ export default function ProductDetails({ product }: IProps) {
           </h3>
           <button
             onClick={() => dispatch(addToCart(product))}
-            className="rounded-lg bg-secondary px-4 py-2 font-semibold text-white hover:bg-opacity-70"
+            className="rounded-lg bg-secondary px-2 py-1 text-sm font-semibold text-white hover:bg-opacity-70 lg:px-4 lg:py-2 lg:text-base"
           >
             ADD TO CART
           </button>
