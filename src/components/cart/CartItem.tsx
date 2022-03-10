@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { useMediaQuery } from 'react-responsive'
 import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/outline'
 
 import { useAppDispatch } from '@store-redux/hook'
@@ -13,18 +14,20 @@ interface IProps {
 
 export default function CartItem({ product }: IProps) {
   const dispatch = useAppDispatch()
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 1024 })
+
   return (
     <article className="-ml-8 md:-ml-5">
       <div className="flex items-center space-x-2 lg:space-x-4">
         <div className="h-10 w-10">
-          <Image
-            className="hidden sm:block"
-            src={product.image}
-            alt={product.title}
-            height={500}
-            width={300}
-            layout="responsive"
-          />
+          {!isTabletOrMobile && (
+            <Image
+              src={product.image}
+              alt={product.title}
+              height={500}
+              width={300}
+            />
+          )}
         </div>
         <div className="max-w-xs">
           <h1 className="text-left text-sm font-semibold">{product.title}</h1>
