@@ -4,12 +4,12 @@ import dynamic from 'next/dynamic'
 
 import type { Product } from '@lib/types'
 
-import CategoryProduct from '@components/CategoryProduct'
 import { Container, MaxWrapper } from '@components/common'
-import Meta from '@components/Meta'
 
 const ProductCard = dynamic(() => import('@components/ProductCard'))
 const HeroSwiper = dynamic(() => import('@components/HeroSwiper'))
+const CategoryProduct = dynamic(() => import('@components/CategoryProduct'))
+const Meta = dynamic(() => import('@components/Meta'))
 
 type ProductsWithKeys = Record<string, Product[]>
 

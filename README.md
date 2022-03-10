@@ -4,10 +4,17 @@
 
 # Stack Used\*
 
-### FRONT
+### TOOLS
 
     - Nextjs
     - Tailwindcss
     - Stripe
     - Typescript
     - SWR
+
+## TODO
+
+[ ] - Search
+[ ] - Help
+[ ] - Improve Lighthouse (mobile)
+[ ] - Persist LocalStorage (Cart)

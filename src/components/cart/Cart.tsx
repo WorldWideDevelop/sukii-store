@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React from 'react'
+import dynamic from 'next/dynamic'
 import { ShoppingCartIcon, XIcon } from '@heroicons/react/outline'
 
 import Modal from '@components/common/Modal'
-import CartItem from './CartItem'
+
+const CartItem = dynamic(() => import('./CartItem'))
 
 import { convertPrice, formatAmountForStripe } from '@lib/formatter'
 import { useAppSelector } from '@store-redux/hook'

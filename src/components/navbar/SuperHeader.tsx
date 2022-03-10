@@ -1,7 +1,6 @@
 import React from 'react'
 import VisuallyHidden from '@reach/visually-hidden'
 import { SearchIcon, ShoppingBagIcon } from '@heroicons/react/outline'
-import Cart from '../cart/Cart'
 import { useAppSelector } from '@store-redux/hook'
 import { selectCartCount } from '@components/cart/store/cartSlice'
 

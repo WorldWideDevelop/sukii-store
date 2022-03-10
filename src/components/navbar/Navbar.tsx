@@ -7,12 +7,12 @@ import { MenuIcon, ShoppingBagIcon, SearchIcon } from '@heroicons/react/outline'
 import VisuallyHidden from '@reach/visually-hidden'
 import tw from 'tailwind-styled-components'
 
-import MobileMenu from './MobileMenu'
 import { A } from '@components/common'
-import Cart from '@components/cart/Cart'
 import { selectCartCount } from '@components/cart/store/cartSlice'
 
 const SuperHeader = dynamic(() => import('./SuperHeader'))
+const MobileMenu = dynamic(() => import('./MobileMenu'))
+const Cart = dynamic(() => import('@components/cart/Cart'))
 
 import { useAppSelector } from '@store-redux/hook'
 import type { Categories } from '@lib/types'
