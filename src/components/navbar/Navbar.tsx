@@ -105,7 +105,7 @@ function Navbar() {
                   </span>
                 )}
               </button>
-              <button onClick={toggleModal}>
+              <button>
                 <SearchIcon className="h-5 w-5" />
                 <VisuallyHidden>Search</VisuallyHidden>
               </button>

@@ -39,6 +39,8 @@ function Cart({ toggleModal, isOpenModal }: iMobileMenuProps) {
     await stripe?.redirectToCheckout({ sessionId: id })
   }
 
+  const hasCartItems = cartItems.length > 0
+
   return (
     <Modal closeModal={toggleModal} isOpen={isOpenModal}>
       <div className="fixed top-0 right-0 flex h-full w-4/5 max-w-sm transform flex-col justify-between bg-white pb-8 pl-4 transition-all md:w-1/2 lg:pl-8">
@@ -51,7 +53,7 @@ function Cart({ toggleModal, isOpenModal }: iMobileMenuProps) {
           </div>
 
           <div className="flex flex-col space-y-4 px-2 py-5 lg:px-6">
-            {cartItems.length > 0 ? (
+            {hasCartItems ? (
               cartItems.map((product) => (
                 <CartItem key={product.id} product={product} />
               ))
@@ -69,8 +71,12 @@ function Cart({ toggleModal, isOpenModal }: iMobileMenuProps) {
           </p>
           <div>
             <button
+              disabled={!hasCartItems}
               onClick={redirectToCheckout}
-              className="rounded-md bg-secondary px-4 py-1 text-white hover:bg-opacity-70"
+              className={`rounded-md bg-secondary px-4 py-1 text-white hover:bg-opacity-70 ${
+                !hasCartItems &&
+                'cursor-not-allowed bg-opacity-40 hover:bg-opacity-40'
+              }`}
             >
               Continue to Payment
             </button>

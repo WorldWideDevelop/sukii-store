@@ -37,14 +37,14 @@ export default function ProductDetails({ product }: IProps) {
           </h3>
           <button
             onClick={() => dispatch(addToCart(product))}
-            className="rounded-lg bg-secondary px-2 py-1 text-sm font-semibold text-white hover:bg-opacity-70 lg:px-4 lg:py-2 lg:text-base"
+            className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold text-white hover:bg-opacity-70 lg:text-base"
           >
             ADD TO CART
           </button>
         </div>
-        <p className="text-gray-700">
+        <p className="text-gray-900">
           {product.rating.rate}/5{' '}
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-gray-700">
             ({product.rating.count} reviews)
           </span>
         </p>
